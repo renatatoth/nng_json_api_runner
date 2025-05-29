@@ -9,7 +9,6 @@ const users = {
 async function getUserProfile(username) {
   if (!username) throw new Error("Username is required");
 
-  await new Promise((r) => setTimeout(r, 200));
   const user = users[username];
   if (!user) throw new Error("User not found");
 

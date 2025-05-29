@@ -7,6 +7,7 @@ const runBtn = document.getElementById("btn-run");
 const jsonInput = document.getElementById("json-input");
 const apiSelector = document.getElementById("api-selector");
 const result = document.getElementById("result");
+const imgContainer = document.getElementById("img-container");
 const body = document.querySelector("body");
 
 // Button event listeners
@@ -41,7 +42,7 @@ apiSelector.addEventListener("change", () => {
   {
     "service": "imageService",
     "method": "getImageByName",
-    "params": ["cat.jpg"]
+    "params": ["cat"]
   }
 ]`,
   };
@@ -51,6 +52,12 @@ apiSelector.addEventListener("change", () => {
 
 // Form submit
 async function submitForm() {
+  // Clear results
+  result.classList.add("hidden");
+  result.innerHTML = "";
+  imgContainer.classList.add("hidden");
+  imgContainer.innerHTML = "";
+
   const inputText = jsonInput.value.trim();
   result.removeAttribute("data-highlighted");
 
@@ -66,9 +73,25 @@ async function submitForm() {
       body: jsonInput.value,
     });
     const data = await response.json();
-    result.textContent = JSON.stringify(data, null, 2);
-    hljs.highlightBlock(result);
+    displayResult(data);
   } catch (err) {
     result.textContent = `Error: ${err.message}`;
   }
+}
+
+// Display image or code based on called API
+function displayResult(data) {
+  data.forEach((entry) => {
+    if (entry.hasOwnProperty("src")) {
+      imgContainer.classList.remove("hidden");
+      let resultImg = document.createElement("img");
+      resultImg.src = entry.src;
+      resultImg.alt = entry.alt;
+      imgContainer.appendChild(resultImg);
+    } else {
+      result.classList.remove("hidden");
+      result.textContent = JSON.stringify(data, null, 2);
+      hljs.highlightBlock(result);
+    }
+  });
 }

@@ -5,6 +5,7 @@ const port = 3000;
 const { dispatchCalls } = require("./backend/dispatcher");
 
 app.use(express.static(path.join(__dirname, "frontend")));
+app.use(express.static(__dirname + "assets"));
 app.use(express.json());
 
 app.post("/api/dispatch", async (req, res) => {
