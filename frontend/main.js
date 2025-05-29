@@ -6,8 +6,8 @@ const runBtn = document.getElementById("btn-run");
 
 const jsonInput = document.getElementById("json-input");
 const apiSelector = document.getElementById("api-selector");
-const result = document.getElementById("result");
-const imgContainer = document.getElementById("img-container");
+const resultContainer = document.getElementById("result-container");
+const errorMessage = document.getElementById("error-message");
 const body = document.querySelector("body");
 
 // Button event listeners
@@ -52,17 +52,12 @@ apiSelector.addEventListener("change", () => {
 
 // Form submit
 async function submitForm() {
-  // Clear results
-  result.classList.add("hidden");
-  result.innerHTML = "";
-  imgContainer.classList.add("hidden");
-  imgContainer.innerHTML = "";
-
+  clearResultsUI();
   const inputText = jsonInput.value.trim();
-  result.removeAttribute("data-highlighted");
 
   if (!inputText) {
-    result.textContent = "Error: Missing JSON input.";
+    errorMessage.classList.remove("hidden");
+    errorMessage.textContent = "Error: Missing JSON input.";
     return;
   }
 
@@ -75,23 +70,51 @@ async function submitForm() {
     const data = await response.json();
     displayResult(data);
   } catch (err) {
-    result.textContent = `Error: ${err.message}`;
+    errorMessage.textContent = `Error: ${err.message}`;
   }
 }
 
 // Display image or code based on called API
 function displayResult(data) {
+  resultContainer.classList.remove("hidden");
   data.forEach((entry) => {
-    if (entry.hasOwnProperty("src")) {
-      imgContainer.classList.remove("hidden");
-      let resultImg = document.createElement("img");
-      resultImg.src = entry.src;
-      resultImg.alt = entry.alt;
-      imgContainer.appendChild(resultImg);
+    if (entry.error) {
+      showError(entry.error);
+    } else if (entry.src) {
+      showImage(entry.src, entry.alt);
     } else {
-      result.classList.remove("hidden");
-      result.textContent = JSON.stringify(data, null, 2);
-      hljs.highlightBlock(result);
+      showJson(entry);
     }
   });
+}
+
+function showError(message) {
+  errorMessage.classList.remove("hidden");
+  errorMessage.textContent = message;
+}
+
+function showImage(src, alt = "Image") {
+  const resultImg = document.createElement("img");
+  resultImg.src = src;
+  resultImg.alt = alt;
+  resultContainer.appendChild(resultImg);
+}
+
+function showJson(jsonData) {
+  const pre = document.createElement("pre");
+  const code = document.createElement("code");
+  code.classList.add("language-json");
+  code.removeAttribute("data-highlighted");
+  pre.appendChild(code);
+  resultContainer.appendChild(pre);
+
+  code.textContent = JSON.stringify(jsonData, null, 2);
+
+  hljs.highlightElement(code);
+}
+
+function clearResultsUI() {
+  resultContainer.classList.add("hidden");
+  resultContainer.innerHTML = "";
+  errorMessage.classList.add("hidden");
 }

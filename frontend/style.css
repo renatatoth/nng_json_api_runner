@@ -130,15 +130,19 @@ section.col {
     background-color: var(--bg-color-1);
 }
 
-.img-container {
+.result-container {
     max-width: 100%;
     object-fit: cover;
 }
 
-.img-container img {
+.result-container img {
     width: 100%;
     height: auto;
     display: block;
+}
+
+.error {
+    color: red;
 }
 
 .align-right {
