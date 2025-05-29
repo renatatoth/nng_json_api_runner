@@ -4,10 +4,8 @@ const themeBtn = document.getElementById("btn-toggle-theme");
 const alignBtn = document.getElementById("btn-toggle-align");
 const runBtn = document.getElementById("btn-run");
 
-// Form input
 const jsonInput = document.getElementById("json-input");
 const apiSelector = document.getElementById("api-selector");
-
 const result = document.getElementById("result");
 const body = document.querySelector("body");
 
@@ -53,6 +51,14 @@ apiSelector.addEventListener("change", () => {
 
 // Form submit
 async function submitForm() {
+  const inputText = jsonInput.value.trim();
+  result.removeAttribute("data-highlighted");
+
+  if (!inputText) {
+    result.textContent = "Error: Missing JSON input.";
+    return;
+  }
+
   try {
     const response = await fetch("/api/dispatch", {
       method: "POST",
@@ -61,6 +67,7 @@ async function submitForm() {
     });
     const data = await response.json();
     result.textContent = JSON.stringify(data, null, 2);
+    hljs.highlightBlock(result);
   } catch (err) {
     result.textContent = `Error: ${err.message}`;
   }

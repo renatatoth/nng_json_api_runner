@@ -5,7 +5,6 @@ async function dispatchCalls(calls) {
   const results = [];
 
   for (const call of calls) {
-    console.log(calls);
     try {
       const servicePath = path.join(__dirname, "apis", `${call.service}.js`);
       const service = require(servicePath);

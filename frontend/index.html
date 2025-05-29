@@ -7,8 +7,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/mono-blue.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/json.min.js"></script>
   <link rel="stylesheet" href="style.css">
-  <script defer src="main.js"></script>
+  <script defer type="module" src="main.js"></script>
   <title>JSON API Runner | Front End Developer Homework</title>
 </head>
 <body>
@@ -44,7 +47,7 @@
         </section>
         <section class="col">
           <h2>Result</h2>
-          <pre id="result"></pre>
+          <pre><code id="result" class="language-json"></code></pre>
         </section>
       </section>
     </main>
