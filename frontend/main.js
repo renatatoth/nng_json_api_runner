@@ -109,7 +109,6 @@ function showJson(jsonData) {
   resultContainer.appendChild(pre);
 
   code.textContent = JSON.stringify(jsonData, null, 2);
-
   hljs.highlightElement(code);
 }
 

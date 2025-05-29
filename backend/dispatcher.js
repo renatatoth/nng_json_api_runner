@@ -1,5 +1,5 @@
 const path = require("path");
-// const logger = require("./logger");
+const logger = require("./logger");
 
 async function dispatchCalls(calls) {
   const results = [];
@@ -10,8 +10,10 @@ async function dispatchCalls(calls) {
       const service = require(servicePath);
       const result = await service[call.method](...call.params);
       results.push(result);
+      logger.log(`Success: ${call.service}.${call.method}`);
     } catch (error) {
       results.push({ error: error.message });
+      logger.log(`Error in ${call.service}.${call.method}: ${error.message}`);
     }
   }
 
