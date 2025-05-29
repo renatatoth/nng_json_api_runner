@@ -31,7 +31,7 @@ Choosing the User Service API from the form select list will give you the follow
 ]
 ```
 
-After clicking on Run you will get back the following data:
+After clicking on Run you will get back the following data under the Result headline:
 ```json
 {
   "name": "John Doe",
@@ -50,7 +50,7 @@ Choosing the Image Service API will give you the following json input:
   }
 ]
 ```
-The cat.jpg image will be visible under the Result headline.
+After clicking on Run the cat.jpg image will be visible under the Result headline.
 
 You can also combine multiple api calls:
 ```json
