@@ -14,11 +14,17 @@ html {
 /* VARIABLES */
 
 :root {
-    --bg-light-1: #a8d8df;
-    --bg-light-2: #fff;
-    --font-light: #fff;
-    --font-dark: #000;
+    --bg-color-1: #a8d8df;
+    --bg-color-2: #fff;
+    --text-color: #000;
     --grey: #c0c0c0;
+}
+
+.dark-theme {
+    --bg-color-1: #132c46;
+    --bg-color-2: #0a1017;
+    --text-color: #fff;
+    --grey: #222222;
 }
 
 /* STYLES */
@@ -30,26 +36,29 @@ body {
     flex-direction: column;
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
-    background-image: linear-gradient(90deg, var(--bg-light-1) 0%, var(--bg-light-2) 100%);
+    background-image: linear-gradient(90deg, var(--bg-color-1) 0%, var(--bg-color-2) 100%);
+    color: var(--text-color);
 }
+
+
 
 .wrapper {
     width: 60%;
-    background-color: #fff;
+    background-color: var(--bg-color-2);
     margin-top: 3rem;
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 2px 3px 5px var(--grey);
 }
 
-header h1  {
+.header h1  {
     text-align: center;
     margin-bottom: 4rem;
     font-size: 1.7rem;
     font-weight: 600;
 }
 
-main h2 {
+.main h2 {
     font-size: 1.2rem;
     font-weight: 600;
 }
@@ -67,17 +76,26 @@ section.col {
     width: 50%;
 }
 
-form textarea {
+.form textarea {
     border-radius: 5px;
     width: 90%;
     resize: vertical;
+    background-color: inherit;
+    color: inherit;
 }
 
-form select {
+.form select {
     border-radius: 5px;
     width: 10rem;
     padding: 0.5rem;
     font-family: inherit;
+    background-color: inherit;
+    color: inherit;
+}
+
+.form select option {
+    color: var(--text-color);
+    background-color: var(--bg-color-2);
 }
 
 .form-group {
@@ -94,13 +112,14 @@ form select {
     padding: 0.5rem 0.5rem;
     width: 10rem;
     font-family: inherit;
+    color: inherit;
     margin-right: 1rem;
     cursor: pointer;
     text-align: left;
     font-weight: 500;
     border-radius: 3px;
-    border: 2px solid var(--bg-light-1);
-    background-color: var(--bg-light-2);
+    border: 2px solid var(--bg-color-1);
+    background-color: var(--bg-color-2);
     transition: 0.2s all ease-in;
 }
 
@@ -110,5 +129,9 @@ form select {
 
 .btn__submit {
     display: block;
-    background-color: var(--bg-light-1);
+    background-color: var(--bg-color-1);
+}
+
+.align-right {
+    text-align: right;
 }
