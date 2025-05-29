@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" name="viewport"/>
+  <meta content="ie=edge" http-equiv="X-UA-Compatible" />
+  <title>JSON API Runner | Front End Developer Homework</title>
+</head>
+<body>
+  <header>
+    <h1>JSON API Runner</h1>
+  </header>
+  <main>
+    <section>
+      <h2>Controls</h2>
+      <button type="button" id="btn-toggle-theme">Toggle Theme</button>
+      <button type="button" id="btn-toggle-align">Toggle Align</button>
+    </section>
+    <section>
+      <h2>API Form</h2>
+      <form action="" method="get">
+        <label for="api">Choose an API:</label>
+        <select name="api" id="api">
+          <option value="user-service">User Service</option>
+          <option value="image-service">Image Service</option>
+        </select>
+        <label for="json-input">Add your json input:</label>
+        <textarea name="json-input" id="json-input" cols="30" rows="10"></textarea>
+        <button type="submit">Run</button>
+      </form>
+    </section>
+    <section>
+      <h2>Result</h2>
+      <pre></pre>
+    </section>
+  </main>
+</body>
+</html>
