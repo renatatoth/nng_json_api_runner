@@ -1,0 +1,27 @@
+[
+  {
+    "service": "userService",
+    "method": "getUserProfile",
+    "params": ["john_doe"]
+  },
+  {
+    "service": "userService",
+    "method": "getUserProfile",
+    "params": ["mia_hobbs"]
+  },
+  {
+    "service": "imageService",
+    "method": "getImageByName",
+    "params": ["dog"]
+  },
+  {
+    "service": "userService",
+    "method": "getUserProfile",
+    "params": ["lukas_schwartz"]
+  },
+  {
+    "service": "imageService",
+    "method": "getImageByName",
+    "params": ["rabbit"]
+  }
+]
